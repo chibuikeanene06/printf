@@ -1,34 +1,50 @@
-#ifndef _MAIN_
-#define _MAIN_
+#ifndef MAIN_H
+#define MAIN_H
 
 #include <unistd.h>
+#include <stdlib.h>
 #include <stdarg.h>
-#include <stdio.h>
-#include <limits.h>
+
+/* utils.c */
+int _strlen(const char *);
+int print(char *);
+char *itoa(long int, int);
+
+/* printf.c */
+int _printf(const char *, ...);
+
+/* handler.c */
+int handler(const char *, va_list);
+int percent_handler(const char *, va_list, int *);
+
+/* printers */
+int print_string(va_list);
+int print_char(va_list);
+int print_integer(va_list);
+int print_binary(va_list);
+int print_rot(va_list);
+int print_unsigned(va_list);
+int print_octal(va_list);
+int print_hexadecimal_low(va_list);
+int print_hexadecimal_upp(va_list);
+int print_pointer(va_list);
+int print_rev_string(va_list);
+
+/* _putchar.c */
+int _putchar(char);
+int buffer(char);
 
 /**
-* struct op - flag / function object
-* @c: flag
-* @f: function
-*/
-
-typedef struct op
+ * struct _format - Typedef struct
+ *
+ * @type: Format
+ * @f: The function associated
+ **/
+typedef struct _format
 {
-	char *c;
+	char type;
 	int (*f)(va_list);
-} op_t;
+} format;
 
-int _printf(const char *format, ...);
-int _putchar(char c);
-int print_c(va_list ar_list);
-int (*get_func(char s))(va_list ar_list);
-int print_s(va_list ar_list);
-int print_d(va_list ar_list);
-int print_i(va_list ar_numlist);
-int print_b(va_list binary_list);
-int print_u(va_list ar_list);
-int print_o(va_list ar_list);
-int print_x(va_list ar_list);
-int print_X(va_list ar_list);
 
-#endif
+#endif /* MAIN_H */
